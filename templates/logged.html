@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html style="margin-top: 10px; margin-left: 15px;">
+
+<head>
+    <title></title>
+    <!-- sepa tem como usar bootstrap só com os aquivos locais ao invés do cdn -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <script src="{{url_for('static', filename='js/awesomplete.js')}}" async></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.cookie.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename = 'js/dados.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/awesomplete.css')}}" />  
+</head>
+
+<body>
+    <h1>Bem-Vindo, <span id="username-logado">{{name}}</span>!</h1>
+    <button id="logout" style="float: right; margin-bottom: 10px; position: relative; top: 5px;" type="button" class="btn btn-outline-warning">Logout</button>
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-bottom:20px">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Suas Aulas</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Materais</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Professores</a>
+        </div>
+    </nav>
+
+
+    <div class="tab-content" id="nav-tabContent">
+<!-- ------------------------------------------Página 1------------------------------------------------------------------------- -->
+        <div  class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" style="text-align:center">
+            <div id="container-disciplinas" style="max-width: 95rem; margin: 0 auto;">
+                  <!--
+
+                  "div class="card" style="width: 30rem; display: inline-block;">
+                        <div class="card-body">
+                              <h5 id="inscrito-disciplina" class="card-title">Física II</h5>
+                              <h6 id="inscrito-professor" class="card-subtitle mb-2 text-muted">Phillipe</h6>
+                              <h6 id="inscrito-creditos" class="card-subtitle mb-2 text-muted">4 créditos</h6>
+                              <h6 id="inscrito-horario" class="card-subtitle mb-2 text-muted">10-12</h6>
+                                    <a id = "ver-materiais" href="#" class="card-link">Materais </a>
+                                    <a id = "ver-professor" href="#" class="card-link">Professor</a>
+                                    <a id = "ver-comentarios" href="#" class="card-link">Comentarios</a>
+                              <button id="remove-disciplina" style="float:right; background-color:brown" type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+
+                        </div>
+                  </div>
+
+                  <div class="card" style="width: 30rem; display: inline-block;">
+                              <div class="card-body">
+                                    <h5 id = 'card-disciplina' class="card-title">Física II</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Professor Elvis</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">4 créditos</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">10-12</h6>
+                                    <p class="card-text">Descricao breve da disciplina</p>
+                                    <a id = "ver-materiais" href="#" class="card-link">Materais </a>
+                                    <a id = "ver-professor" href="#" class="card-link">Professor</a>
+                                    <a id = "ver-comentarios" href="#" class="card-link">Comentarios</a>
+                                    <button style='float:right; background-color:brown' type='button' class='btn btn-secondary' data-dismiss='modal'>X</button>
+
+                              </div>
+                  </div>
+
+                  <div class="card" style="width: 30rem; display: inline-block;">
+                              <div class="card-body">
+                                    <h5 class="card-title">Física II</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Professor Elvis</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">4 créditos</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">10-12</h6>
+                                    <p class="card-text">Descricao breve da disciplina</p>
+                                    <a id = "ver-materiais" href="#" class="card-link">Materais </a>
+                                    <a id = "ver-professor" href="#" class="card-link">Professor</a>
+                                    <a id = "ver-comentarios" href="#" class="card-link">Comentarios</a>
+                                    <button style="float:right; background-color:brown" type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+
+                              </div>
+                  </div>
+
+                  <div class='card' style='width: 30rem; display: inline-block;'>
+                              <div class='card-body'>
+                                    <h5 class='card-title'>Física II</h5>
+                                    <h6 class='card-subtitle mb-2 text-muted'>Professor Elvis</h6>
+                                    <h6 class='card-subtitle mb-2 text-muted'>4 créditos</h6>
+                                    <h6 class='card-subtitle mb-2 text-muted'>10-12</h6>
+                                    <p class='card-text'>Descricao breve da disciplina</p>
+                                    <a id = "ver-materiais" href="#" class="card-link">Materais </a>
+                                    <a id = "ver-professor" href="#" class="card-link">Professor</a>
+                                    <a id = "ver-comentarios" href="#" class="card-link">Comentarios</a>
+                                    <button style="float:right; background-color:brown" type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+
+                              </div>
+                  </div>
+
+                  <div class="card" style="width: 30rem; display: inline-block;">
+                              <div class="card-body">
+                                    <h5 class="card-title">Física II</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Professor Elvis</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">4 créditos</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">10-12</h6>
+                                    <p class="card-text">Descricao breve da disciplina</p>
+                                    <a id = "ver-materiais" href="#" class="card-link">Materais </a>
+                                    <a id = "ver-professor" href="#" class="card-link">Professor</a>
+                                    <a id = "ver-comentarios" href="#" class="card-link">Comentarios</a>
+                                    <button style="float:right; background-color:brown" type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+
+                              </div>
+                  </div>
+
+                  <div class="card" style="width: 30rem; display: inline-block;">
+                              <div class="card-body">
+                                    <h5 class="card-title">Física II</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Professor Elvis</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">4 créditos</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">10-12</h6>
+                                    <p class="card-text">Descricao breve da disciplina</p>
+                                    <a id = "ver-materiais" href="#" class="card-link">Materais </a>
+                                    <a id = "ver-professor" href="#" class="card-link">Professor</a>
+                                    <a id = "ver-comentarios" href="#" class="card-link">Comentarios</a>
+                                    <button style="float:right; background-color:brown" type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+                              </div>
+                  </div>
+                  -->
+            </div>
+            <br>
+            <br>
+
+            
+            
+            <div class="input-group mb-3" style="width:90em; margin: 0 auto">
+                        <input id="materia-inscrever" type="text" class="form-control" placeholder="Pesquisar disciplina" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button id="btn-inscrever" class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#inscrever-modal">Button</button>
+                        </div>
+            </div>
+            
+
+
+            <button id="getData" name="getData" class="btn" style="display:none">Go</button>
+            <input type="text" id="texto" name="texto>" style="display:none">
+
+
+
+        </div>
+
+
+
+        <!-- Modal para cadastro em disciplinas -->       
+        <div class="modal fade" id="inscrever-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Forneça as informações da aula</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                              <input style="margin-top:10px" id="nome-inscrever" type="text" class="form-control" placeholder="Nome da disciplina" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              <input style="margin-top:10px" id="professor-inscrever" type="text" class="form-control" placeholder="professor" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              <input style="margin-top:10px" id="horario-inscrever" type="text" class="form-control" placeholder="Horario da Aula" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              <input style="margin-top:10px" id="creditos-inscrever" type="text" class="form-control" placeholder="Numero de creditos" aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+                        </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="go-inscrever" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+
+
+        <!-- modal informacoes disciplina -->
+        <div class="modal fade" id="ver-disciplinas-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- Pode dar merda isso aqui --> 
+                    <div style = "position: relative; left: 50%; margin-left: -500px"class="modal-dialog" role="document">
+                      <!-- Pode dar merda nesse width fixo aqui --> 
+                      <div style = "width: 1000px"class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Veja o que falam dessa disciplina</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                                
+
+                                <h4 id="disciplina-nome">Nome</h4>
+
+                                <!-- Nao sei se vai dar tempo de implementar isso!
+
+                                <h6 style = "color: brown" id="disciplina-dificil">Dificil: <span id="disc-votos-dificil"></span></h6>
+                                <h6 style = "color: lightgreen" id="disciplina-mamata">Mamata: <span id="disc-votos-mamata"></span></h6>
+                                <h6 style = "color: lightblue" id="disciplina-util">Util: <span id="disc-votos-util "></span></h6>
+                                <h6 style = "color: lightblue" id="disciplina-inutil">Sem utilidade: <span id="disc-votos-inutil "></span></h6>
+                                <button id="btn-disciplina-mamata" type="button" class="btn btn-outline-success">Mamata</button>
+                                <button id="btn-disciplina-dificil" type="button" class="btn btn-outline-danger">Dificil</button>
+                                
+                                <br>
+
+                                <button id="btn-disciplina-util" type="button" class="btn btn-outline-primary">Util</button>
+                                <button id="btn-disciplina-inutil" type="button" class="btn btn-outline-primary">Inutil</button> -->
+
+                                <div id = "comentarios-disciplina" style="max-height: 450px; overflow-y: scroll; margin-top: 10px;">
+                                  
+                                  <h4>Ainda não há comentários sobre essa disciplina :( </h4>
+
+                                </div>
+                                <!-- Pode dar merda com esse height fixo aqui  
+                                <div  id="professor-comentarios">teste</div>-->
+                          </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+          </div>            
+
+
+
+        
+<!-- ----------------------------Página 2------------------------------------------------------------------ -->
+
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            
+
+            <div class="list-group" style="width: 65%; margin: 0 auto; display: none">
+                  <button type="button" class="list-group-item list-group-item-action active">
+                        Ultimos professores que receberam avaliacoes
+                  </button>
+                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">List group item heading</h5>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                  </a>
+            
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                              <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">List group item heading</h5>
+                              </div>
+                              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        </a>
+            
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                              <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">List group item heading</h5>
+                              </div>
+                              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        </a>
+            
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                              <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">List group item heading</h5>
+                              </div>
+                              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        </a>
+            </div>
+
+
+            <div id="container-enviar-materiais" style="width:1048px; margin: 0 auto; margin-top: 50px">
+            <h2>Envie materiais!</h2>
+                    <div class="form-group">
+                      <label  for="exampleFormControlInput1">Disciplina</label>
+                      <input id="enviar-disciplina" type="email" class="form-control"  placeholder="Ex.: Fisica IV">
+                    </div>
+                    <div class="form-group">
+                      <label  for="exampleFormControlInput1">Tipo</label>
+                      <select id="enviar-tipo" class="form-control">
+                        <option>resumo</option>
+                        <option>lista</option>
+                        <option>livro</option>
+                        <option>slide</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Forneça o link para o material</label>
+                      <textarea id="enviar-link" class="form-control" rows="3"></textarea>
+                    </div>
+            <button id="enviar-material-go" class="btn btn-primary mb-2">Enviar</button>
+            </div>
+
+
+
+
+
+
+            <!--Modal que mostra os materiais-->
+                <div class="modal fade" id="materiais-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- Pode dar merda isso aqui --> 
+                    <div style = "position: relative; left: 50%; margin-left: -500px"class="modal-dialog" role="document">
+                      <!-- Pode dar merda nesse width fixo aqui --> 
+                      <div style = "width: 1000px"class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Esses são os links para os materiais</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                                <h4 style="margin-bottom: 10px" id="materiais-disciplina">Fisica</h4>
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                  <option selected>Escolha</option>
+                                  <option value="1">Resumo</option>
+                                  <option value="2">Listas</option>
+                                  <option value="3">Livros</option>
+                                </select>
+                                <div id="lista-materiais">
+                                
+
+                                </div>
+                          </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                          <button id="mostrar-materiais" type="button" class="btn btn-primary">Ver materiais</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                  
+
+        </div>
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+                  <div class="list-group" style="width:50%; margin: 0 auto; display: none">
+                              <button type="button" class="list-group-item list-group-item-action active">
+                                    Ultimos professores que receberam avaliacoes
+                              </button>
+                              <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+                              <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+                              <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+                  </div>
+
+                  <div id="avalie-professor-container" style="width: 1048px; margin: 0 auto; margin-top: 50px;" >
+                    <h2>Avalie um professor</h2>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Nome</label>
+                      <input type="text" class="form-control" id="nome-avaliado" placeholder="professor">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Faça seu comentário</label>
+                      <textarea id="comentario-avaliado" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <button id="avaliar-go" class="btn btn-primary mb-2">Enviar</button>
+                  </div>
+
+                  <div id="avalie-disciplina-container" style="width: 1048px; margin: 0 auto; margin-top: 50px;" >
+                    <h2>Avalie uma disciplina</h2>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Disciplina</label>
+                      <input type="text" class="form-control" id="disciplina-avaliada" placeholder="disciplina">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Faça seu comentário</label>
+                      <textarea id="disciplina-comentario-avaliado" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <button id="disciplina-avaliar-go" class="btn btn-primary mb-2">Enviar</button>
+                  </div>     
+
+
+
+
+
+
+                <!--MOdal que mostra dados dos professores-->
+                <div class="modal fade" id="professores-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- Pode dar merda isso aqui --> 
+                    <div style = "position: relative; left: 50%; margin-left: -500px"class="modal-dialog" role="document">
+                      <!-- Pode dar merda nesse width fixo aqui --> 
+                      <div style = "width: 1000px"class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Veja o que falam desse professor</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                                <h4 id="professor-nome">Nome</h4>
+                                <!-- nao sei se vai dar tempo de implementar
+                                <h6 style = "color: brown" id="professor-carrasco">Carrasco: <span id="votos-carrasco"></span></h6>
+                                <h6 style = "color: lightgreen" id="professor-mamata">Mamata: <span id="votos-mamata"></span></h6>
+                                <h6 style = "color: lightblue" id="professor-justo">Justo: <span id="votos-justo "></span></h6>
+                                <button type="button" class="btn btn-outline-success">Mamata</button>
+                                <button type="button" class="btn btn-outline-danger">Carrasco</button>
+                                <button type="button" class="btn btn-outline-primary">Justo</button> -->
+                                <ul class="list-group" id = "comentarios-prof" style="max-height: 450px; overflow-y: scroll; margin-top: 10px;"></ul>
+                                <!-- Pode dar merda com esse height fixo aqui  
+                                <div  id="professor-comentarios">teste</div>-->
+                          </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+        </div>
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+    </div>
+</body>
+
+</html>
